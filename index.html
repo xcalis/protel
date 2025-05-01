@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PROTEL Ticket System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <main>
+        <div class="login-container fade-in">
+            <div class="login-logo">
+                <i class="fas fa-ticket-alt"></i> PROTEL
+            </div>
+            <div class="card">
+                <h2 class="text-center mb-3">Internal Ticketing System</h2>
+                
+                <div class="role-toggle mb-3">
+                    <button type="button" class="active" data-role="employee">Employee</button>
+                    <button type="button" data-role="admin">Admin</button>
+                </div>
+                
+                <form id="login-form">
+                    <input type="hidden" id="role" value="employee">
+                    
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="remember-me" name="remember-me">
+                        <label for="remember-me">Remember me</label>
+                    </div>
+                    
+                    <div id="error-message" class="mb-2" style="display: none; color: var(--danger);"></div>
+                    
+                    <button type="submit" class="btn btn-block mb-2">Login</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                &copy; 2023 PROTEL, Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/static/js/auth.js"></script>
+</body>
+</html>

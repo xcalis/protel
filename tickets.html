@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets - PROTEL Ticket System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-ticket-alt"></i> PROTEL
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/tickets" class="active">Tickets</a></li>
+                        <li><a href="/warnings">Warnings</a></li>
+                        <li><a href="/my-achievements">Achievements</a></li>
+                        <li class="admin-only"><a href="/admin-panel">Admin Panel</a></li>
+                        <li><a href="/logout" id="logout-btn">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="ticket-detail-header">
+                <h1>Tickets</h1>
+                <a href="/add-ticket" class="btn">
+                    <i class="fas fa-plus"></i> Add New Ticket
+                </a>
+            </div>
+            
+            <div id="tickets-container" class="ticket-list">
+                <!-- Tickets will be loaded here via JavaScript -->
+                <div class="card">
+                    <p class="text-center">Loading tickets...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                &copy; 2023 PROTEL, Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/tickets.js"></script>
+    <script src="/static/js/nav.js"></script>
+</body>
+</html>

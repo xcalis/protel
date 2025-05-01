@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Ticket - PROTEL Ticket System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-ticket-alt"></i> PROTEL
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/tickets">Tickets</a></li>
+                        <li><a href="/warnings">Warnings</a></li>
+                        <li><a href="/my-achievements">Achievements</a></li>
+                        <li class="admin-only"><a href="/admin-panel">Admin Panel</a></li>
+                        <li><a href="/logout" id="logout-btn">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container" id="ticket-form-container">
+            <div class="card fade-in">
+                <h1 class="mb-3">Submit New Ticket</h1>
+                
+                <div id="success-message" class="mb-2" style="display: none; color: var(--success);">
+                    Ticket has been created successfully! Redirecting...
+                </div>
+                
+                <div id="error-message" class="mb-2" style="display: none; color: var(--danger);"></div>
+                
+                <form id="add-ticket-form">
+                    <h2 class="mb-2">Customer Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="customer-name">Customer Name</label>
+                        <input type="text" id="customer-name" name="customer-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-phone">Customer Phone</label>
+                        <input type="text" id="customer-phone" name="customer-phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-address">Customer Address</label>
+                        <input type="text" id="customer-address" name="customer-address" required>
+                    </div>
+                    
+                    <h2 class="mb-2 mt-3">Ticket Details</h2>
+                    
+                    <div class="form-group">
+                        <label for="ticket-subject">Subject</label>
+                        <input type="text" id="ticket-subject" name="ticket-subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ticket-description">Description</label>
+                        <textarea id="ticket-description" name="ticket-description" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ticket-priority">Priority</label>
+                        <select id="ticket-priority" name="ticket-priority" required>
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="assigned-employee">Assign To Employee</label>
+                        <select id="assigned-employee" name="assigned-employee" required>
+                            <option value="">-- Select Employee --</option>
+                            <!-- Employee options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-block">Submit Ticket</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                &copy; 2023 PROTEL, Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/tickets.js"></script>
+    <script src="/static/js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - PROTEL Ticket System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-ticket-alt"></i> PROTEL
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/tickets">Tickets</a></li>
+                        <li><a href="/warnings">Warnings</a></li>
+                        <li><a href="/my-achievements">Achievements</a></li>
+                        <li class="admin-only"><a href="/admin-panel" class="active">Admin Panel</a></li>
+                        <li><a href="/logout" id="logout-btn">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h1 class="mb-3">Admin Panel</h1>
+            
+            <div class="admin-tabs mb-3">
+                <button class="admin-tab active" id="tab-performance">Employee Performance</button>
+                <button class="admin-tab" id="tab-warnings">Manage Warnings</button>
+            </div>
+            
+            <!-- Employee Performance Section -->
+            <section id="performance-section">
+                <h2 class="mb-2">Employee Performance Tracking</h2>
+                <div id="employee-stats-container">
+                    <!-- Employee stats will be loaded here via JavaScript -->
+                    <div class="card">
+                        <p class="text-center">Loading employee performance data...</p>
+                    </div>
+                </div>
+                
+                <div class="mt-4 mb-3">
+                    <h3>Quick Actions</h3>
+                    <div class="dashboard-actions">
+                        <a href="/add-ticket" class="action-card">
+                            <div class="action-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="action-title">New Ticket</div>
+                            <div class="action-description">Assign a ticket to an employee</div>
+                        </a>
+                        
+                        <a href="/tickets" class="action-card">
+                            <div class="action-icon">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <div class="action-title">View Tickets</div>
+                            <div class="action-description">Browse and manage all tickets</div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Warnings Section -->
+            <section id="warnings-section" style="display: none;">
+                <div class="card fade-in">
+                    <h2 class="mb-2">Create Warning or Announcement</h2>
+                    
+                    <div id="success-message" class="mb-2" style="display: none; color: var(--success);">
+                        Warning/Announcement has been created successfully!
+                    </div>
+                    
+                    <form id="warning-form">
+                        <div class="form-group">
+                            <label for="warning-title">Title</label>
+                            <input type="text" id="warning-title" name="warning-title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="warning-message">Message</label>
+                            <textarea id="warning-message" name="warning-message" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="warning-priority">Priority</label>
+                            <select id="warning-priority" name="warning-priority" required>
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block">Post Warning/Announcement</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <h2 class="mb-2 mt-3">Existing Warnings & Announcements</h2>
+                <div id="warnings-container">
+                    <!-- Warnings will be loaded here via JavaScript -->
+                    <div class="card">
+                        <p class="text-center">Loading warnings and announcements...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const perfTab = document.getElementById('tab-performance');
+            const warningsTab = document.getElementById('tab-warnings');
+            const perfSection = document.getElementById('performance-section');
+            const warningsSection = document.getElementById('warnings-section');
+            
+            if (perfTab && warningsTab) {
+                perfTab.addEventListener('click', function() {
+                    perfTab.classList.add('active');
+                    warningsTab.classList.remove('active');
+                    perfSection.style.display = 'block';
+                    warningsSection.style.display = 'none';
+                });
+                
+                warningsTab.addEventListener('click', function() {
+                    warningsTab.classList.add('active');
+                    perfTab.classList.remove('active');
+                    warningsSection.style.display = 'block';
+                    perfSection.style.display = 'none';
+                });
+            }
+        });
+    </script>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                &copy; 2023 PROTEL, Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/admin.js"></script>
+    <script src="/static/js/nav.js"></script>
+</body>
+</html>

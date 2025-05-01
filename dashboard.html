@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PROTEL Ticket System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-ticket-alt"></i> PROTEL
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="/dashboard" class="active">Dashboard</a></li>
+                        <li><a href="/tickets">Tickets</a></li>
+                        <li><a href="/warnings">Warnings</a></li>
+                        <li><a href="/my-achievements">Achievements</a></li>
+                        <li class="admin-only"><a href="/admin-panel">Admin Panel</a></li>
+                        <li><a href="/logout" id="logout-btn">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h1 class="mb-3">Welcome, <span class="user-display"></span>!</h1>
+            
+            <div class="dashboard-stats fade-in">
+                <div class="stat-card">
+                    <div class="stat-value" id="open-tickets">0</div>
+                    <div class="stat-label">Open Tickets</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="completed-tickets">0</div>
+                    <div class="stat-label">Completed Tickets</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="today-completed">0</div>
+                    <div class="stat-label">Completed Today</div>
+                </div>
+            </div>
+            
+            <h2 class="mb-2">Quick Actions</h2>
+            <div class="dashboard-actions fade-in">
+                <!-- Admin-only action -->
+                <a href="/add-ticket" class="action-card admin-only">
+                    <div class="action-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <div class="action-title">Assign Ticket</div>
+                    <div class="action-description">Create and assign new tickets to employees</div>
+                </a>
+                
+                <a href="/tickets" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="action-title">View Tickets</div>
+                    <div class="action-description">Browse and manage tickets</div>
+                </a>
+                
+                <a href="/warnings" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="action-title">Warnings</div>
+                    <div class="action-description">View important announcements</div>
+                </a>
+                
+                <a href="/my-achievements" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="action-title">My Performance</div>
+                    <div class="action-description">Track your work statistics</div>
+                </a>
+                
+                <!-- Admin-only action -->
+                <a href="/admin-panel" class="action-card admin-only">
+                    <div class="action-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <div class="action-title">Manage Employees</div>
+                    <div class="action-description">View employee performance metrics</div>
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                &copy; 2023 PROTEL, Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/tickets.js"></script>
+    <script src="/static/js/nav.js"></script>
+    <script>
+        // Update dashboard stats
+        document.addEventListener('DOMContentLoaded', async function() {            
+            try {
+                // Show loading state
+                document.getElementById('open-tickets').textContent = '...';
+                document.getElementById('completed-tickets').textContent = '...';
+                document.getElementById('today-completed').textContent = '...';
+                
+                // Get user tickets from API
+                const tickets = await getUserTickets();
+                
+                if (tickets && Array.isArray(tickets)) {
+                    // Count open tickets
+                    const openTickets = tickets.filter(ticket => ticket.status === 'open').length;
+                    document.getElementById('open-tickets').textContent = openTickets;
+                    
+                    // Count completed tickets
+                    const completedTickets = tickets.filter(ticket => ticket.status === 'done').length;
+                    document.getElementById('completed-tickets').textContent = completedTickets;
+                    
+                    // Count completed today
+                    const today = new Date().toISOString().split('T')[0];
+                    const completedToday = tickets.filter(ticket => {
+                        return ticket.status === 'done' && 
+                            (ticket.updated_at || ticket.updatedAt) && 
+                            (ticket.updated_at || ticket.updatedAt).startsWith(today);
+                    }).length;
+                    document.getElementById('today-completed').textContent = completedToday;
+                } else {
+                    // Reset counters if no tickets or error
+                    document.getElementById('open-tickets').textContent = '0';
+                    document.getElementById('completed-tickets').textContent = '0';
+                    document.getElementById('today-completed').textContent = '0';
+                }
+            } catch (error) {
+                console.error('Error loading dashboard stats:', error);
+                // Reset counters on error
+                document.getElementById('open-tickets').textContent = '0';
+                document.getElementById('completed-tickets').textContent = '0';
+                document.getElementById('today-completed').textContent = '0';
+            }
+        });
+    </script>
+</body>
+</html>

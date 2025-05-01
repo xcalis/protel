@@ -1,0 +1,60 @@
+Full Website Specification for PROTEL Ticket System
+
+I need a full internal web-based ticketing system for my employees for my internet company PROTEL In order for communication between the management and the employees on the site only, and the maintenance of the user or subscriber is done by submitting a request to my employees, who are the maintenance team, through the manager’s interface. The subscriber’s full details and his problem are uploaded and reached through this site. , .
+
+⸻
+
+User Roles & Login:
+	•	Login page must support role selection: Admin or Employee.
+	•	Built-in login (no database).
+	•	Admin credentials:
+	•	Username: admin@ali
+	•	Password: @@2005@@2005
+	•	8 Employee accounts with hardcoded usernames/passwords (e.g. emp_protel1, ptl2025a1 up to emp_protel8, ptl2025h8)
+	•	“Remember Me” functionality (save login in localStorage)
+	•	Auto-redirect to the correct dashboard after login.
+
+⸻
+
+Required Pages (HTML Interfaces):
+	1.	index.html – Login Page
+	2.	dashboard.html – Employee Dashboard (navigation hub)
+	3.	add-ticket.html – Submit New Ticket
+	4.	tickets.html – View Submitted Tickets
+	5.	ticket-details.html – Complete ticket (must enter resolution note before completing)
+	6.	my-achievements.html – Shows number of completed tickets (daily/weekly)
+	7.	warnings.html – Displays admin announcements & warnings
+	8.	admin-panel.html – Admin-only page to post company-wide messages
+	9.	logout.html (optional) – Logout confirmation
+	10.	404.html (optional) – Page not found
+
+⸻
+
+Functional Requirements:
+	•	Tickets are saved per user in localStorage
+	•	Ticket status: open / done
+	•	Ticket cannot be completed unless the employee writes a “problem resolution”
+	•	Warnings posted by admin are stored and visible to employees
+	•	Completed tickets count toward the “Achievements” page
+
+⸻
+
+Style & Design:
+	•	Responsive layout (works on desktop and mobile)
+	•	Dark Mode by default (CSS variables)
+	•	Primary color theme:
+	•	Royal Blue #007aff
+	•	White
+	•	Light Gray #dcdcdc
+	•	Clean and modern UI (professional SaaS style)
+	•	Smooth animations:
+	•	Fade-ins, hover effects, button transitions
+	•	All fonts and layout must be readable, centered, and consistent across all pages
+
+⸻
+
+Technical Stack:
+	•	Pure HTML5, CSS3, and Vanilla JS
+	•	LocalStorage only (no database or server)
+	•	Fully linked pages (no broken navigation)
+	•	Works from a single local folder

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Achievements - PROTEL Ticket System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js"></link>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-ticket-alt"></i> PROTEL
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/tickets">Tickets</a></li>
+                        <li><a href="/warnings">Warnings</a></li>
+                        <li><a href="/my-achievements" class="active">Achievements</a></li>
+                        <li class="admin-only"><a href="/admin-panel">Admin Panel</a></li>
+                        <li><a href="/logout" id="logout-btn">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h1 class="mb-3">My Achievements</h1>
+            
+            <div id="achievements-container" class="fade-in">
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-completed">0</div>
+                        <div class="stat-label">Total Tickets Completed</div>
+                    </div>
+                </div>
+                
+                <div class="achievement-tabs">
+                    <div id="daily-tab" class="achievement-tab active">Daily Statistics</div>
+                    <div id="weekly-tab" class="achievement-tab">Weekly Statistics</div>
+                </div>
+                
+                <div id="daily-stats" class="achievement-chart">
+                    <!-- Daily stats will be loaded here via JavaScript -->
+                    <div class="card">
+                        <p class="text-center">Loading daily statistics...</p>
+                    </div>
+                </div>
+                
+                <div id="weekly-stats" class="achievement-chart" style="display: none;">
+                    <!-- Weekly stats will be loaded here via JavaScript -->
+                    <div class="card">
+                        <p class="text-center">Loading weekly statistics...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                &copy; 2023 PROTEL, Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/tickets.js"></script>
+    <script src="/static/js/achievements.js"></script>
+    <script src="/static/js/nav.js"></script>
+</body>
+</html>
